@@ -11,7 +11,7 @@
  *
  */
 
-const mergeIntervals = (arr: number[][]): number[][] => {
+export const mergeIntervals = (arr: number[][]): number[][] => {
   arr.sort((a, b) => a[0] - b[0]);
   let newArr: number[][] = [arr[0]];
 
@@ -29,23 +29,6 @@ const mergeIntervals = (arr: number[][]): number[][] => {
   return newArr;
 };
 
-// console.log(
-//   mergeIntervals([
-//     [1, 3],
-//     [2, 6],
-//     [8, 10],
-//     [15, 18],
-//   ])
-// ); // [[1,6],[8,10],[15,18]]
-// console.log(
-//   mergeIntervals([
-//     [1, 3],
-//     [15, 18],
-//     [2, 6],
-//     [8, 10],
-//   ])
-// ); // [[1,6],[8,10],[15,18]]
-
 /*
  * Problem: Group Anagrams
  *
@@ -57,7 +40,7 @@ const mergeIntervals = (arr: number[][]): number[][] => {
  *
  */
 
-const groupAnagrams = (arr: string[]) => {
+export const groupAnagrams = (arr: string[]) => {
   const map = new Map();
 
   for (let str of arr) {
@@ -71,16 +54,6 @@ const groupAnagrams = (arr: string[]) => {
   return Array.from(map.values());
 };
 
-// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
-// output
-/*
-[
-  ["eat", "tea", "ate"],
-  ["tan", "nat"],
-  ["bat"]
-]
-*/
-
 /*
  * Problem: Longest Palindromic Substring
  *
@@ -92,10 +65,6 @@ const groupAnagrams = (arr: string[]) => {
  *
  */
 
-// I modified a function I did for a different palindrome algo but palindrome problems throw me a little as I have to look up what
-// a palindrome is then figure out how to build it with code and I don't particular like this code I wrote for time and space
-// complexity
-
 const isPalindrome = (str: string, left: number, right: number) => {
   while (left >= 0 && right < str.length && str[left] === str[right]) {
     left--;
@@ -104,26 +73,19 @@ const isPalindrome = (str: string, left: number, right: number) => {
   return str.slice(left + 1, right);
 };
 
-const longestPalindrome = (str: string): string => {
+export const longestPalindrome = (str: string): string => {
   let longest = "";
 
   for (let i = 0; i < str.length; i++) {
     let odd = isPalindrome(str, i, i);
     let even = isPalindrome(str, i, i + 1);
+    // play with this part to shorten it to add the odd to longest first then do the if statement
     if (odd.length > longest.length) longest = odd;
     if (even.length > longest.length) longest = even;
   }
 
   return longest;
 };
-
-// console.log(longestPalindrome("babad")); // Output: "bab" or "aba"
-// console.log(longestPalindrome("cbbd")); // Output: "bb"
-// console.log(longestPalindrome("a")); // Output: "a"
-// console.log(longestPalindrome("ac")); // Output: "a" or "c"
-// console.log(longestPalindrome("racecar")); // Output: "racecar"
-// console.log(longestPalindrome("")); // Output: ""
-// console.log(longestPalindrome("abacdfgdcaba")); // Output: "aba" or "aca"
 
 /*
  * Problem: Flatten Nested Object
@@ -137,11 +99,12 @@ const longestPalindrome = (str: string): string => {
  * Hint: Use recursion + a helper function.
  */
 
-const flattenNestedObject = (
+export const flattenNestedObject = (
   obj: { [key: string]: any },
   str = "",
   flatObj: { [key: string]: any } = {}
 ): object => {
+  console.log(obj);
   for (let key in obj) {
     if (typeof obj[key] === "object") {
       flattenNestedObject(obj[key], `${str}${key}.`, flatObj);
@@ -150,8 +113,6 @@ const flattenNestedObject = (
 
   return flatObj;
 };
-
-// console.log(flattenNestedObject({ a: { b: { c: 1 } }, d: 2 }));
 
 /*
  * Problem: Deep Object Comparison
@@ -165,7 +126,7 @@ const flattenNestedObject = (
  * Hint: Use recursion and check nested properties.
  */
 
-const deepObjectComparison = (
+export const deepObjectComparison = (
   obj1: Record<string, unknown>,
   obj2: Record<string, unknown>
 ): boolean => {
@@ -191,11 +152,6 @@ const deepObjectComparison = (
   return true;
 };
 
-// console.log(deepObjectComparison({ a: { b: 1 } }, { a: { b: 1 } }));
-// console.log(deepObjectComparison({ a: { b: 1 } }, { a: { b: 2 } }));
-// console.log(deepObjectComparison({ a: { b: 12 } }, { a: { b: { c: 12 } } }));
-// console.log(deepObjectComparison({ one: { two: 5 } }, { one: { two: 5 } }));
-
 /*
  * Problem: Maximum Subarray Sum
  *
@@ -207,7 +163,7 @@ const deepObjectComparison = (
  *
  */
 
-const maxSubArraySum = (arr: number[]): number => {
+export const maxSubArraySum = (arr: number[]): number => {
   let maxGlobal = arr[0];
   let maxCurrent = arr[0];
 
@@ -220,14 +176,3 @@ const maxSubArraySum = (arr: number[]): number => {
 
   return maxGlobal;
 };
-
-// console.log(maxSubArraySum([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // Output: 6
-// console.log(maxSubArraySum([1, 2, 3, 4, 5])); // Output: 15
-// console.log(maxSubArraySum([-1, -2, -3, -4])); // Output: -1
-// console.log(maxSubArraySum([5, 4, -1, 7, 8])); // Output: 23
-// console.log(maxSubArraySum([0, -3, 1, 1, -1, 2, 1, -5, 4])); // Output: 4
-// console.log(maxSubArraySum([-2, -3, 4, -1, -2, 1, 5, -3])); // Output: 7
-// console.log(maxSubArraySum([3, -2, 5, -1])); // Output: 6
-// console.log(maxSubArraySum([1])); // Output: 1
-// console.log(maxSubArraySum([-1])); // Output: -1
-// console.log(maxSubArraySum([0, 0, 0, 0])); // Output: 0

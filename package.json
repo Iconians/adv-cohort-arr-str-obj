@@ -1,0 +1,26 @@
+{
+  "name": "adv-cohort-arr-str-obj",
+  "version": "1.0.0",
+  "description": "Welcome! This repository contains a set of TypeScript problems for you to practice and improve your problem-solving skills with Arrays, Strings, and Objects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:easy": "vitest tests/easy.test.ts",
+    "test:medium": "vitest tests/medium.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iconians/adv-cohort-arr-str-obj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iconians/adv-cohort-arr-str-obj/issues"
+  },
+  "homepage": "https://github.com/Iconians/adv-cohort-arr-str-obj#readme",
+  "devDependencies": {
+    "jest-extended": "^4.0.2",
+    "vitest": "^3.0.5"
+  }
+}

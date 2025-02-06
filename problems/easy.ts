@@ -10,7 +10,7 @@
  *
  */
 
-const twoSum = (arr: number[], sum: number): number[] => {
+export const twoSum = (arr: number[], sum: number): number[] => {
   const map = new Map();
 
   for (let i = 0; i < arr.length; i++) {
@@ -23,10 +23,6 @@ const twoSum = (arr: number[], sum: number): number[] => {
   return [];
 };
 
-// console.log(twoSum([2, 7, 11, 15], 9)); // [0, 1]
-// console.log(twoSum([3, 2, 4], 6)); // [1, 2]
-// console.log(twoSum([3, 3], 6)); // [0, 1]
-// console.log(twoSum([3, 2, 3], 6)); // [0, 2]
 /*
  * Problem: Reverse Words in a String
  *
@@ -37,9 +33,10 @@ const twoSum = (arr: number[], sum: number): number[] => {
  * Output: "blue is sky the"
  *
  */
-const reverseStr1 = (str: string): string => str.split(" ").reverse().join(" ");
+export const reverseStr1 = (str: string): string =>
+  str.split(" ").reverse().join(" ");
 
-const reverseStr2 = (str: string): string => {
+export const reverseStr2 = (str: string): string => {
   let reversed = "";
   const split = str.split(" ");
 
@@ -54,10 +51,6 @@ const reverseStr2 = (str: string): string => {
   return reversed;
 };
 
-// console.log(reverseStr1("the sky is blue"));
-// console.log(reverseStr2("the sky is blue"));
-// console.log(reverseStr1("Reverse Words in a String"));
-// console.log(reverseStr2("Reverse Words in a String"));
 /*
  * Problem: Most Common Character
  *
@@ -69,7 +62,7 @@ const reverseStr2 = (str: string): string => {
  *
  */
 
-const mostCommonChar = (str: string): string => {
+export const mostCommonChar = (str: string): string => {
   const map = new Map();
   let mostCommon = "";
   let count = 0;
@@ -90,9 +83,6 @@ const mostCommonChar = (str: string): string => {
   return mostCommon;
 };
 
-// console.log(mostCommonChar("banana"));
-// console.log(mostCommonChar("Problem: Most Common Character"));
-
 /*
  * Problem: Find Duplicates
  *
@@ -101,10 +91,10 @@ const mostCommonChar = (str: string): string => {
  * Example:
  * Input: [4,3,2,7,8,2,3,1]
  * Output: [2,3]
- *
+ * because of map it returns [3, 2]
  */
 
-const findDuplicates = (arr: number[]): number[] => {
+export const findDuplicates = (arr: number[]): number[] => {
   const map = new Map();
   let returnArr = [];
 
@@ -122,12 +112,6 @@ const findDuplicates = (arr: number[]): number[] => {
   return returnArr;
 };
 
-console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])); // Expected output: [2, 3] but because of map it returns [3, 2]
-console.log(findDuplicates([1, 2, 3, 4, 5, 6, 1, 2])); // Expected output: [1, 2]
-console.log(findDuplicates([10, 20, 30, 40, 50])); // Expected output: []
-console.log(findDuplicates([5, 5, 5, 5, 5])); // Expected output: [5]
-console.log(findDuplicates([1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 9, 10])); // Expected output: [4, 9]
-
 /*
  * Problem: First Unique Character
  *
@@ -139,7 +123,7 @@ console.log(findDuplicates([1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 9, 10])); // Expected 
  *
  */
 
-const fistUniqueChar = (str: string): number => {
+export const fistUniqueChar = (str: string): number => {
   const map = new Map();
   let index = 0;
 
@@ -151,10 +135,7 @@ const fistUniqueChar = (str: string): number => {
   return index;
 };
 
-// console.log(fistUniqueChar("leetcode"));
-// console.log(fistUniqueChar("aabbc"));
-// console.log(fistUniqueChar("aaaaaaazaa"));
-
+// looks like the same problem as the one above
 /*
  * Problem: Find All Duplicates in an Array
  *
