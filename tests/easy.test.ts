@@ -5,7 +5,7 @@ import {
   reverseStr2,
   mostCommonChar,
   findDuplicates,
-  fistUniqueChar,
+  firstUniqueChar,
 } from "../problems/easy";
 
 describe("test twoSum function", () => {
@@ -36,6 +36,14 @@ describe("test reverseStr1 function", () => {
       "String a in Words Reverse"
     );
   });
+
+  it("should return world hello", () => {
+    expect(reverseStr1("hello world")).toEqual("world hello");
+  });
+
+  it("should return empty string for empty input", () => {
+    expect(reverseStr1("")).toEqual("");
+  });
 });
 
 describe("test reverseStr2 function", () => {
@@ -48,6 +56,14 @@ describe("test reverseStr2 function", () => {
       "String a in Words Reverse"
     );
   });
+
+  it("should return world hello", () => {
+    expect(reverseStr2("hello world")).toEqual("world hello");
+  });
+
+  it("should return empty string for empty input", () => {
+    expect(reverseStr2("")).toEqual("");
+  });
 });
 
 describe("test mostCommonChar function", () => {
@@ -57,6 +73,14 @@ describe("test mostCommonChar function", () => {
 
   it("should return o", () => {
     expect(mostCommonChar("Problem: Most Common Character")).toEqual("o");
+  });
+
+  it("should return l", () => {
+    expect(mostCommonChar("hello world")).toEqual("l");
+  });
+
+  it("should return e", () => {
+    expect(mostCommonChar("elephant")).toEqual("e");
   });
 });
 
@@ -84,20 +108,20 @@ describe("test findDuplicates function", () => {
   });
 });
 
-// console.log(fistUniqueChar("leetcode"));
-// console.log(fistUniqueChar("aabbc"));
-// console.log(fistUniqueChar("aaaaaaazaa"));
-
-describe("test fistUniqueChar function", () => {
+describe("test firstUniqueChar function", () => {
   it("should return 0", () => {
-    expect(fistUniqueChar("leetcode")).toEqual(0);
+    expect(firstUniqueChar("leetcode")).toEqual(0);
   });
 
   it("should return 4", () => {
-    expect(fistUniqueChar("aabbc")).toEqual(4);
+    expect(firstUniqueChar("aabbc")).toEqual(4);
   });
 
   it("should return 7", () => {
-    expect(fistUniqueChar("aaaaaaazaa")).toEqual(7);
+    expect(firstUniqueChar("aaaaaaazaa")).toEqual(7);
+  });
+
+  it("should return -1 for no unique characters", () => {
+    expect(firstUniqueChar("aabbcc")).toEqual(-1);
   });
 });

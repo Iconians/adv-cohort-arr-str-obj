@@ -65,27 +65,65 @@ export const groupAnagrams = (arr: string[]) => {
  *
  */
 
-const isPalindrome = (str: string, left: number, right: number) => {
-  while (left >= 0 && right < str.length && str[left] === str[right]) {
-    left--;
-    right++;
-  }
-  return str.slice(left + 1, right);
-};
-
 export const longestPalindrome = (str: string): string => {
-  let longest = "";
+  let transformedStr = "#" + str.split("").join("#") + "#";
+  let length = transformedStr.length;
+  let palindromeStr = new Array(length).fill(0);
+  let center = 0;
+  let right = 0;
+  let maxLen = 0;
+  let centerIndex = 0;
 
-  for (let i = 0; i < str.length; i++) {
-    let odd = isPalindrome(str, i, i);
-    let even = isPalindrome(str, i, i + 1);
-    // play with this part to shorten it to add the odd to longest first then do the if statement
-    if (odd.length > longest.length) longest = odd;
-    if (even.length > longest.length) longest = even;
+  for (let i = 0; i < length; i++) {
+    let mirror = 2 * center - i;
+    if (i < right) {
+      palindromeStr[i] = Math.min(right - i, palindromeStr[mirror]);
+    }
+    while (
+      i + palindromeStr[i] + 1 < length &&
+      i - palindromeStr[i] - 1 >= 0 &&
+      transformedStr[i + palindromeStr[i] + 1] ===
+        transformedStr[i - palindromeStr[i] - 1]
+    ) {
+      palindromeStr[i]++;
+    }
+
+    if (i + palindromeStr[i] > right) {
+      center = i;
+      right = i + palindromeStr[i];
+    }
+
+    if (palindromeStr[i] > maxLen) {
+      maxLen = palindromeStr[i];
+      centerIndex = i;
+    }
   }
 
-  return longest;
+  let start = (centerIndex - maxLen) / 2;
+  return str.substring(start, start + maxLen);
 };
+
+// const isPalindrome = (str: string, left: number, right: number) => {
+//   while (left >= 0 && right < str.length && str[left] === str[right]) {
+//     left--;
+//     right++;
+//   }
+//   return str.slice(left + 1, right);
+// };
+
+// export const longestPalindrome = (str: string): string => {
+//   let longest = "";
+
+//   for (let i = 0; i < str.length; i++) {
+//     let odd = isPalindrome(str, i, i);
+//     let even = isPalindrome(str, i, i + 1);
+//     // play with this part to shorten it to add the odd to longest first then do the if statement
+//     if (odd.length > longest.length) longest = odd;
+//     if (even.length > longest.length) longest = even;
+//   }
+
+//   return longest;
+// };
 
 /*
  * Problem: Flatten Nested Object
@@ -104,9 +142,8 @@ export const flattenNestedObject = (
   str = "",
   flatObj: { [key: string]: any } = {}
 ): object => {
-  console.log(obj);
   for (let key in obj) {
-    if (typeof obj[key] === "object") {
+    if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
       flattenNestedObject(obj[key], `${str}${key}.`, flatObj);
     } else flatObj[`${str}${key}`] = obj[key];
   }

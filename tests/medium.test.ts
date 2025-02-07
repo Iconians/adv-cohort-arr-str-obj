@@ -38,6 +38,27 @@ describe("test mergeIntervals", () => {
       [15, 18],
     ]);
   });
+
+  it("should return [[1,5]]", () => {
+    expect(
+      mergeIntervals([
+        [1, 4],
+        [4, 5],
+      ])
+    ).toEqual([[1, 5]]);
+  });
+
+  it("should return [[1,4],[5,6]]", () => {
+    expect(
+      mergeIntervals([
+        [1, 4],
+        [5, 6],
+      ])
+    ).toEqual([
+      [1, 4],
+      [5, 6],
+    ]);
+  });
 });
 
 describe("test groupAnagrams function", () => {
@@ -46,6 +67,22 @@ describe("test groupAnagrams function", () => {
       ["eat", "tea", "ate"],
       ["tan", "nat"],
       ["bat"],
+    ]);
+  });
+
+  it("should return [['']]", () => {
+    expect(groupAnagrams([""])).toEqual([[""]]);
+  });
+
+  it("should return [['a']]", () => {
+    expect(groupAnagrams(["a"])).toEqual([["a"]]);
+  });
+
+  it("should return [['ab','ba'],['abc','cab'],['xyz']]", () => {
+    expect(groupAnagrams(["ab", "ba", "abc", "cab", "xyz"])).toEqual([
+      ["ab", "ba"],
+      ["abc", "cab"],
+      ["xyz"],
     ]);
   });
 });
@@ -99,10 +136,11 @@ describe("test flattenNestedObject function", () => {
     expect(flattenNestedObject({ a: 1, b: 2 })).toEqual({ a: 1, b: 2 });
   });
 
-  it.only("should handle an object with arrays", () => {
-    const input = { a: { b: [1, 2, 3] }, c: 4 };
-    const output = { "a.b": [1, 2, 3], c: 4 };
-    expect(flattenNestedObject(input)).toEqual(output);
+  it("should handle an object with arrays", () => {
+    expect(flattenNestedObject({ a: { b: [1, 2, 3] }, c: 4 })).toEqual({
+      "a.b": [1, 2, 3],
+      c: 4,
+    });
   });
 });
 

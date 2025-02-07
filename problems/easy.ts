@@ -123,9 +123,9 @@ export const findDuplicates = (arr: number[]): number[] => {
  *
  */
 
-export const fistUniqueChar = (str: string): number => {
+export const firstUniqueChar = (str: string): number => {
   const map = new Map();
-  let index = 0;
+  let index = -1;
 
   for (let i = 0; i < str.length; i++) {
     if (str[i] !== str[i + 1] && !map.has(str[i])) {
