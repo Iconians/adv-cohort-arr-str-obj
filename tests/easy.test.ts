@@ -86,7 +86,7 @@ describe("test mostCommonChar function", () => {
 
 describe("test findDuplicates function", () => {
   it("should return [3, 2]", () => {
-    expect(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])).toEqual([3, 2]);
+    expect(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])).toEqual([2, 3]);
   });
 
   it("should return [1, 2]", () => {

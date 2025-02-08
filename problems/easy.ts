@@ -96,20 +96,14 @@ export const mostCommonChar = (str: string): string => {
 
 export const findDuplicates = (arr: number[]): number[] => {
   const map = new Map();
-  let returnArr = [];
+  const set = new Set<number>();
 
   for (let num of arr) {
     if (map.has(num)) {
-      map.set(num, map.get(num) + 1);
+      set.add(num);
     } else map.set(num, 1);
   }
-
-  for (let [key, value] of map.entries()) {
-    if (value > 1) {
-      returnArr.push(key);
-    }
-  }
-  return returnArr;
+  return [...set];
 };
 
 /*
