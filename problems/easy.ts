@@ -127,10 +127,16 @@ export const firstUniqueChar = (str: string): number => {
   const map = new Map();
   let index = -1;
 
+  for (let char of str) {
+    if (map.has(char)) {
+      map.set(char, map.get(char) + 1);
+    } else map.set(char, 1);
+  }
+
   for (let i = 0; i < str.length; i++) {
-    if (str[i] !== str[i + 1] && !map.has(str[i])) {
+    if (map.get(str[i]) === 1) {
       return i;
-    } else map.set(str[i], 1);
+    }
   }
   return index;
 };

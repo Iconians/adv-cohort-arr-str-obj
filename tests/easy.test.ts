@@ -121,7 +121,11 @@ describe("test firstUniqueChar function", () => {
     expect(firstUniqueChar("aaaaaaazaa")).toEqual(7);
   });
 
-  it("should return -1 for no unique characters", () => {
+  it("should return -1", () => {
     expect(firstUniqueChar("aabbcc")).toEqual(-1);
+  });
+
+  it("should return 1", () => {
+    expect(firstUniqueChar("asdad")).toEqual(1);
   });
 });
